@@ -5,7 +5,7 @@ extends Node2D
 func _ready():
 	$Timer.autostart = true
 	$Timer.one_shot = false
-	$Timer.wait_time = 2
+	$Timer.wait_time = 0.5
 	$Timer.timeout.connect(_on_timer_timeout)
 	$Timer.start()
 

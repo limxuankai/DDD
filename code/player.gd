@@ -10,8 +10,6 @@ var beat_node = null
 
 @onready var gun_tip = $GunTip
 
-signal beat_hit
-
 func _ready():
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	add_to_group("player")

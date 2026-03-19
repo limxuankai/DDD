@@ -1,18 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8t33gp6ea4vw"]
+[gd_scene load_steps=2 format=3 uid="uid://c8t33gp6ea4vw"]
 
-[ext_resource type="PackedScene" uid="uid://ms3ho3jnq0lw" path="res://beatspawner.tscn" id="1_6uqi0"]
-[ext_resource type="PackedScene" uid="uid://bomj3qjk1cna8" path="res://receive.tscn" id="2_ppyta"]
-[ext_resource type="PackedScene" uid="uid://b4nl7g48xkxsh" path="res://player.tscn" id="3_ykrsh"]
+[ext_resource type="Script" uid="uid://8kum1q5idp1t" path="res://test.gd" id="1_37kl0"]
 
 [node name="test" type="Node2D"]
 position = Vector2(-451, 92)
-
-[node name="player" parent="." instance=ExtResource("3_ykrsh")]
-
-[node name="beatspawner" parent="player" instance=ExtResource("1_6uqi0")]
-position = Vector2(2585, -1249.9999)
-scale = Vector2(4.999999, 4.999999)
-
-[node name="receive" parent="player" instance=ExtResource("2_ppyta")]
-position = Vector2(-2639.9995, -1545)
-scale = Vector2(4.999999, 4.999999)
+script = ExtResource("1_37kl0")

@@ -7,6 +7,7 @@
 radius = 28.01785
 
 [node name="beat" type="Area2D"]
+scale = Vector2(5, 5)
 script = ExtResource("1_h7gas")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

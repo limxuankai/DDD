@@ -1,14 +1,17 @@
-[gd_scene format=3 uid="uid://pp75gpkxo7td"]
+[gd_scene load_steps=8 format=3 uid="uid://pp75gpkxo7td"]
 
 [ext_resource type="PackedScene" uid="uid://cilfxsbhloxl6" path="res://spawner.tscn" id="1_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://b4nl7g48xkxsh" path="res://player.tscn" id="1_fj7yv"]
+[ext_resource type="Script" uid="uid://dkjq08i8poe22" path="res://world.gd" id="1_pkg7o"]
 [ext_resource type="Texture2D" uid="uid://cu776px17dx2a" path="res://gass.png" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://bomj3qjk1cna8" path="res://receive.tscn" id="4_036b0"]
 [ext_resource type="PackedScene" uid="uid://ms3ho3jnq0lw" path="res://beatspawner.tscn" id="5_dwbse"]
+[ext_resource type="AudioStream" uid="uid://nrdbp2baidbi" path="res://bgm.mp3" id="7_gbfbk"]
 
-[node name="world" type="Node2D" unique_id=1792324643]
+[node name="world" type="Node2D"]
+script = ExtResource("1_pkg7o")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=486764486]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 texture_repeat = 2
 position = Vector2(624, 348.00003)
@@ -17,15 +20,18 @@ texture = ExtResource("1_tlwt5")
 region_enabled = true
 region_rect = Rect2(0, 0, 10926.586, 7034.8516)
 
-[node name="spawner" parent="." unique_id=2093809741 instance=ExtResource("1_aqk2v")]
+[node name="spawner" parent="." instance=ExtResource("1_aqk2v")]
 
-[node name="player" parent="." unique_id=135948416 instance=ExtResource("1_fj7yv")]
+[node name="player" parent="." instance=ExtResource("1_fj7yv")]
 
-[node name="receive" parent="player" unique_id=2015866140 instance=ExtResource("4_036b0")]
+[node name="receive" parent="player" instance=ExtResource("4_036b0")]
 position = Vector2(-2880, -1480)
 scale = Vector2(4.9999995, 4.9999995)
 
-[node name="beatspawner" parent="player" unique_id=38356681 instance=ExtResource("5_dwbse")]
+[node name="beatspawner" parent="player" instance=ExtResource("5_dwbse")]
 position = Vector2(2359.9998, -1185)
 
-[node name="loot" type="Node2D" parent="." unique_id=114553951 groups=["loot"]]
+[node name="loot" type="Node2D" parent="." groups=["loot"]]
+
+[node name="music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_gbfbk")

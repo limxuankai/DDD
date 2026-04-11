@@ -1,17 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4nl7g48xkxsh"]
+[gd_scene load_steps=11 format=3 uid="uid://b4nl7g48xkxsh"]
 
 [ext_resource type="Script" uid="uid://c3u5w6wyg2bnt" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bwduurd186uep" path="res://assets/char1.png" id="2_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://dp64y25pdnxmo" path="res://assets/pistol.png" id="3_hqtel"]
-[ext_resource type="PackedScene" uid="uid://ciob4plo40dkc" path="res://hurtbox.tscn" id="3_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://ciob4plo40dkc" path="res://Hurtbox.tscn" id="3_i3pqv"]
+[ext_resource type="AudioStream" uid="uid://nrdbp2baidbi" path="res://assets/bgm.mp3" id="5_sweqy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sweqy"]
 radius = 62.000244
 height = 559.99976
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2hs0m"]
-radius = 40.0
-height = 289.99988
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cxr5p"]
+radius = 39.9
+height = 313.86
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3pqv"]
 bg_color = Color(0.64266455, 0.1471225, 0.12586632, 1)
@@ -22,17 +23,18 @@ bg_color = Color(0.25848994, 0.55185014, 0.2349875, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
 radius = 175.07141
 
-[node name="player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 position = Vector2(4.7683716e-07, -1.9999924)
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_onrkg")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Player" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(20, 20)
 texture = ExtResource("2_i3pqv")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Pistol" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(134.99998, -15.000038)
 scale = Vector2(15, 15)
@@ -43,13 +45,28 @@ position = Vector2(6.151199e-05, 9.999998)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CapsuleShape2D_sweqy")
 
-[node name="hurtbox" parent="." instance=ExtResource("3_i3pqv")]
+[node name="GunTip" type="Marker2D" parent="."]
+visible = false
+position = Vector2(84.99999, -20.000034)
+scale = Vector2(0.99999994, 0.99999994)
 
-[node name="CollisionShape2D" parent="hurtbox" index="0"]
-position = Vector2(3.0517578e-05, 9.999968)
-shape = SubResource("CapsuleShape2D_2hs0m")
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+scale = Vector2(0.99999994, 0.99999994)
 
-[node name="Health Bar" type="ProgressBar" parent="."]
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+visible = false
+scale = Vector2(0.9999997, 0.9999997)
+stream = ExtResource("5_sweqy")
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_i3pqv")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 10)
+shape = SubResource("CapsuleShape2D_cxr5p")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+visible = false
 offset_left = -205.0
 offset_top = -305.0
 offset_right = 240.0
@@ -59,7 +76,8 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_hqtel")
 max_value = 3.0
 show_percentage = false
 
-[node name="Health Label" type="Label" parent="Health Bar"]
+[node name="HealthLabel" type="Label" parent="HealthBar"]
+visible = false
 layout_mode = 0
 offset_left = 29.999998
 offset_top = 19.999996
@@ -69,18 +87,12 @@ theme_override_font_sizes/font_size = 64
 text = "HP:"
 horizontal_alignment = 1
 
-[node name="GunTip" type="Marker2D" parent="."]
-position = Vector2(85, -20.000036)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="EXP Collect" type="Area2D" parent="."]
+[node name="ExpCollect" type="Area2D" parent="."]
+visible = false
 scale = Vector2(0.99999994, 0.99999994)
 
-[node name="EXP Range" type="CollisionShape2D" parent="EXP Collect"]
+[node name="ExpRange" type="CollisionShape2D" parent="ExpCollect"]
 position = Vector2(4.999998, 4.9999623)
 shape = SubResource("CircleShape2D_i3pqv")
 
-[connection signal="area_entered" from="EXP Collect" to="." method="_on_exp_collect_area_entered"]
-
-[editable path="hurtbox"]
+[connection signal="area_entered" from="ExpCollect" to="." method="_on_exp_collect_area_entered"]

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var health = 3
-var SPEED = 50.0
+var speed = 50.0
 @export var experience = 1
 @onready var loot_base = get_tree().get_first_node_in_group("loot")
 var exp_gem = preload("res://objects/exp.tscn")
@@ -10,11 +10,11 @@ var exp_gem = preload("res://objects/exp.tscn")
 
 func _ready():
 	add_to_group("enemy")
-	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING #Prevent sticking to player
+	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 
 func _physics_process(_delta):
 	var direction = global_position.direction_to(player.global_position)
-	velocity = direction*SPEED
+	velocity = direction * speed
 	move_and_slide()
 	
 	if direction.x < 0:

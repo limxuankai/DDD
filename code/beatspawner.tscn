@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ms3ho3jnq0lw"]
-
-[ext_resource type="Script" uid="uid://gygg561e1iw" path="res://beatspawner.gd" id="1_fk42c"]
-
-[node name="beatspawner" type="Node2D"]
-position = Vector2(1102, 47)
-script = ExtResource("1_fk42c")
-
-[node name="Timer" type="Timer" parent="."]

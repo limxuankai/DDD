@@ -15,7 +15,6 @@ func _on_area_entered(area):
 	if area.is_in_group("hitbox"):
 		current_hitbox = area
 		emit_signal("hurt", current_hitbox.damage)
-		print("Damage dealt:", current_hitbox.damage)
 		$Timer.start()
 
 func _on_area_exited(area):
@@ -28,4 +27,3 @@ func _on_timer_timeout():
 		emit_signal("hurt", current_hitbox.damage)
 	else:
 		pass
-		print("Damage dealt:", current_hitbox.damage)

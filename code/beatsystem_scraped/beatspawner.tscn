@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://ms3ho3jnq0lw"]
+
+[sub_resource type="GDScript" id="GDScript_copge"]
+script/source = "extends Node2D
+
+@onready var beat = load(\"res://beat.tscn\")
+	
+func _ready():
+	$Timer.autostart = true
+	$Timer.one_shot = false
+	$Timer.wait_time = 0.5
+	$Timer.timeout.connect(_on_timer_timeout)
+	$Timer.start()
+
+func _on_timer_timeout():
+	var bt = beat.instantiate()
+	bt.global_position = Vector2(0,0)
+	add_child(bt)
+"
+
+[node name="beatspawner" type="Node2D"]
+position = Vector2(1102, 47)
+script = SubResource("GDScript_copge")
+
+[node name="Timer" type="Timer" parent="."]

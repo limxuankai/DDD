@@ -1,10 +1,8 @@
-[gd_scene format=3 uid="uid://ciob4plo40dkc"]
+[gd_scene load_steps=2 format=3 uid="uid://ciob4plo40dkc"]
 
 [ext_resource type="Script" uid="uid://du2icpas67b55" path="res://hurtbox.gd" id="1_id7pq"]
 
-[node name="hurtbox" type="Area2D" unique_id=16229848]
+[node name="Hurtbox" type="Area2D"]
 script = ExtResource("1_id7pq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=81287327]
-
-[node name="Timer" type="Timer" parent="." unique_id=1555137091]
+[node name="Timer" type="Timer" parent="."]

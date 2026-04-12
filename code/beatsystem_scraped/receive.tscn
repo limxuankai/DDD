@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bomj3qjk1cna8"]
+[gd_scene format=3 uid="uid://bomj3qjk1cna8"]
 
 [ext_resource type="Script" uid="uid://ws2oligk8d3d" path="res://beatsystem_scraped/receive.gd" id="1_0lwpp"]
-[ext_resource type="Texture2D" uid="uid://n4k6fpyfuk4p" path="res://assets/plauer.png" id="1_u5ugv"]
-[ext_resource type="Texture2D" uid="uid://cu776px17dx2a" path="res://assets/gass.png" id="2_0lwpp"]
+[ext_resource type="Texture2D" uid="uid://n4k6fpyfuk4p" path="res://Assets/Player/plauer.png" id="1_u5ugv"]
+[ext_resource type="Texture2D" uid="uid://cu776px17dx2a" path="res://Assets/Background/gass.png" id="2_0lwpp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gfcwp"]
 radius = 3.0

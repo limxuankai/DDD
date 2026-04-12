@@ -1,19 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqubtjwjyw5sw"]
+[gd_scene format=3 uid="uid://cqubtjwjyw5sw"]
 
 [ext_resource type="Script" uid="uid://cel4wm11gxiu0" path="res://objects/exp.gd" id="1_7ucc5"]
-[ext_resource type="Texture2D" uid="uid://c2kvist0kqcew" path="res://assets/Experience Points/Gem_green.png" id="2_xjl10"]
+[ext_resource type="Texture2D" uid="uid://c2kvist0kqcew" path="res://Assets/Loot/Experience/Gem_green.png" id="2_xjl10"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lyjhh"]
 size = Vector2(17.5, 19)
 
-[node name="Exp" type="Area2D" groups=["loot"]]
+[node name="Exp" type="Area2D" unique_id=1601493297 groups=["loot"]]
 script = ExtResource("1_7ucc5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=650757515]
 texture_filter = 1
 position = Vector2(0, -2)
 texture = ExtResource("2_xjl10")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1683680038]
 position = Vector2(0.25, -3.5)
 shape = SubResource("RectangleShape2D_lyjhh")

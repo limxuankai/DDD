@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://nd0qn2w4b4x6"]
+[gd_scene format=3 uid="uid://nd0qn2w4b4x6"]
 
 [ext_resource type="Script" uid="uid://cb2ds5xq6feyx" path="res://beatsystem_scraped/beat.gd" id="1_h7gas"]
-[ext_resource type="Texture2D" uid="uid://n4k6fpyfuk4p" path="res://assets/plauer.png" id="1_pj6v0"]
+[ext_resource type="Texture2D" uid="uid://n4k6fpyfuk4p" path="res://Assets/Player/plauer.png" id="1_pj6v0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h7gas"]
 radius = 28.01785

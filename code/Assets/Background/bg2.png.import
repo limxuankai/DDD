@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqwvdk35k4vxx"
-path="res://.godot/imported/Gem_blue.png-11f1466ffbd74bd8d5cf3ab97020369e.ctex"
+uid="uid://dock2fljunxct"
+path="res://.godot/imported/bg2.png-5d4c47efb5c34ae1a34cfab074cf2c51.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Experience Points/Gem_blue.png"
-dest_files=["res://.godot/imported/Gem_blue.png-11f1466ffbd74bd8d5cf3ab97020369e.ctex"]
+source_file="res://Assets/Background/bg2.png"
+dest_files=["res://.godot/imported/bg2.png-5d4c47efb5c34ae1a34cfab074cf2c51.ctex"]
 
 [params]
 

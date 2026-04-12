@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cu776px17dx2a"
-path="res://.godot/imported/gass.png-6d5c45f63c105542fdffe65cc02102ca.ctex"
+uid="uid://b6x205ajei3p5"
+path="res://.godot/imported/Gem_red.png-49e5ab38d9ffb6d778c40b8a71bb7a55.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gass.png"
-dest_files=["res://.godot/imported/gass.png-6d5c45f63c105542fdffe65cc02102ca.ctex"]
+source_file="res://Assets/Loot/Experience/Gem_red.png"
+dest_files=["res://.godot/imported/Gem_red.png-49e5ab38d9ffb6d778c40b8a71bb7a55.ctex"]
 
 [params]
 

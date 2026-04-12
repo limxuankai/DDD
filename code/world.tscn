@@ -1,12 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://pp75gpkxo7td"]
+[gd_scene format=3 uid="uid://pp75gpkxo7td"]
 
 [ext_resource type="PackedScene" uid="uid://cilfxsbhloxl6" path="res://spawner.tscn" id="1_aqk2v"]
-[ext_resource type="Texture2D" uid="uid://dock2fljunxct" path="res://assets/bg2.png" id="2_pkg7o"]
-[ext_resource type="PackedScene" uid="uid://b4nl7g48xkxsh" path="res://Player.tscn" id="3_036b0"]
+[ext_resource type="Texture2D" uid="uid://dock2fljunxct" path="res://Assets/Background/bg2.png" id="2_pkg7o"]
+[ext_resource type="PackedScene" uid="uid://b4nl7g48xkxsh" path="res://player.tscn" id="3_036b0"]
 
-[node name="world" type="Node2D"]
+[node name="world" type="Node2D" unique_id=1635481063]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1237112239]
 texture_filter = 1
 texture_repeat = 2
 position = Vector2(624, 348.00003)
@@ -15,8 +15,8 @@ texture = ExtResource("2_pkg7o")
 region_enabled = true
 region_rect = Rect2(0, 0, 10926.586, 7034.8516)
 
-[node name="spawner" parent="." instance=ExtResource("1_aqk2v")]
+[node name="spawner" parent="." unique_id=277154022 instance=ExtResource("1_aqk2v")]
 
-[node name="Player" parent="." instance=ExtResource("3_036b0")]
+[node name="Player" parent="." unique_id=1352303666 instance=ExtResource("3_036b0")]
 
-[node name="loot" type="Node2D" parent="." groups=["loot"]]
+[node name="loot" type="Node2D" parent="." unique_id=1476337002 groups=["loot"]]

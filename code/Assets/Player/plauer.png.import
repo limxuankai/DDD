@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw24fcpxmiits"
-path="res://.godot/imported/mob1.png-0de5aa8c6edff228a15520a094e1b2f1.ctex"
+uid="uid://n4k6fpyfuk4p"
+path="res://.godot/imported/plauer.png-93452875721392016a6ffb2917f578b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mob1.png"
-dest_files=["res://.godot/imported/mob1.png-0de5aa8c6edff228a15520a094e1b2f1.ctex"]
+source_file="res://Assets/Player/plauer.png"
+dest_files=["res://.godot/imported/plauer.png-93452875721392016a6ffb2917f578b4.ctex"]
 
 [params]
 

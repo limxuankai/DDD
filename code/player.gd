@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const MAX_HP = 3 
-const SPEED = 400.0
+var MAX_HP = 3 
+var SPEED = 400.0
 
 var hp = MAX_HP
 var experience = 0
@@ -79,8 +79,42 @@ func _on_exp_collect_area_entered(area: Area2D) -> void:
 	if area.is_in_group("loot"):
 		var gem_exp = area.collect()
 		$"ExpBar".value += gem_exp
-		$"ExpBar".max_value = 1 * pow(1.2 , (experience_level - 1))
+		$"ExpBar".max_value = experience_level * pow(1.2 , (experience_level - 1))
 		if $"ExpBar".value == $"ExpBar".max_value:
 			experience_level += 1
-			$Label.text = "LVL\nas" + str(experience_level)
+			$Label.text = "LVL\n" + str(experience_level)
 			$"ExpBar".value = 0
+
+#func levelup():
+	#$Label.text = str("Level: ",experience_level)
+	#var tween = levelPanel.create_tween()
+	#tween.tween_property(levelPanel,"position",Vector2(220,50),0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	#tween.play()
+	#levelPanel.visible = true
+	#var options = 0
+	#var optionsmax = 3
+	#while options < optionsmax:
+		#var option_choice = itemOptions.instantiate()
+		#option_choice.item = get_random_item()
+		#upgradeOptions.add_child(option_choice)
+		#options += 1
+	#get_tree().paused = true
+	#
+#func upgrade_character(upgrade):
+	#match upgrade:
+		#"speed1","speed2","speed3","speed4":
+			#SPEED += 20.0
+		#"food":
+			#hp += 1
+			#hp = clamp(hp,0, MAX_HP)
+	#adjust_gui_collection(upgrade)
+	#attack()
+	#var option_children = upgradeOptions.get_children()
+	#for i in option_children:
+		#i.queue_free()
+	#upgrade_options.clear()
+	#collected_upgrades.append(upgrade)
+	#levelPanel.visible = false
+	#levelPanel.position = Vector2(800,50)
+	#get_tree().paused = false
+	#calculate_experience(0)

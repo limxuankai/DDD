@@ -19,6 +19,7 @@ var upgrade_panel = load("res://upgrade.tscn")
 
 var shot_cooldown = 0.5
 var time_since_last_shot = 0.0
+var last_time = 0.0
 
 func _ready():
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
@@ -45,10 +46,16 @@ func _process(delta):
 	var time = $Music.get_playback_position() + AudioServer.get_time_since_last_mix()
 	time -= AudioServer.get_output_latency()
 	
-	#reload
+	if (time < last_time):
+		time_since_last_shot = 0
+	
+	print(time_since_last_shot , time)
+	
 	if time >= time_since_last_shot:
 		shoot()
 		time_since_last_shot = time + shot_cooldown
+		last_time = time
+	
 
 func _physics_process(_delta):
 	movement()

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var MAX_HP = 3 
 var SPEED = 400.0
-
+var ARMOUR = 0 
 var hp = MAX_HP
 var experience = 0
 var experience_level = 1
@@ -15,13 +15,14 @@ var collected_experience = 0
 @onready var levelup_lbl = get_node("%Label_LVL_Up")
 @onready var upgrade_options = get_node("%Upgrade_Options")
 @onready var itemoptions = preload("res://upgrade.tscn") 
+@onready var UpgradeDb = preload("res://Assets/Utility/upgradeoptionsdb.gd")
 
 var bullet = load("res://bullet.tscn")
 var bullet_speed = 800
 var bullet_damage = 1
 
 var upgrade_panel = load("res://upgrade.tscn")
-
+var collected_upgrades = []
 var shot_cooldown = 0.5
 var time_since_last_shot = 0.0
 var last_time = 0.0
@@ -122,18 +123,50 @@ func levelup():
 	var optionsmax = 3
 	while options < optionsmax:
 		var option_choice = itemoptions.instantiate()
+		option_choice.item = get_random_item()
 		upgrade_options.add_child(option_choice)
 		options += 1
 	get_tree().paused = true
 	
 func upgrade_character(upgrade):
+	match upgrade:
+		"armor1","armor2","armor3","armor4":
+			ARMOUR += 1
+		"speed1","speed2","speed3","speed4":
+			SPEED += 20.0
+		"food":
+			hp += 20
 	var option_children = upgrade_options.get_children()
 	for i in option_children:
 		i.queue_free()
-	#collected_upgrades.append(upgrade)
+	collected_upgrades.append(upgrade)
 	levelup_screen.visible = false
 	levelup_screen.position = Vector2(800,50)
 	SPEED = SPEED * experience_level
 	bullet_speed = bullet_speed * experience_level
 	get_tree().paused = false
-	#calculate_experience(0)
+
+func get_random_item():
+	var dblist = []
+	for i in UpgradeDb.UPGRADES:
+		if i in collected_upgrades: #Find already collected upgrades
+			pass
+		elif i in upgrade_options: #If the upgrade is already an option
+			pass
+		elif UpgradeDb.UPGRADES[i]["type"] == "item": #Don't pick food
+			pass
+		elif UpgradeDb.UPGRADES[i]["prerequisite"].size() > 0: #Check for PreRequisites
+			var to_add = true
+			for n in UpgradeDb.UPGRADES[i]["prerequisite"]:
+				if not n in collected_upgrades:
+					to_add = false
+			if to_add:
+				dblist.append(i)
+		else:
+			dblist.append(i)
+	if dblist.size() > 0:
+		var randomitem = dblist.pick_random()
+		upgrade_options.append(randomitem)
+		return randomitem
+	else:
+		return null

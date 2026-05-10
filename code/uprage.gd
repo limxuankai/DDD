@@ -4,6 +4,8 @@ extends Button
 @onready var Description = $Label_Description
 @onready var Level = $Label_Level
 @onready var Icon = $ColorRect/Icon
+@onready var UpgradeDb = preload("res://Assets/Utility/upgradeoptionsdb.gd")
+
 
 var mouse_over = false
 var item = null
@@ -12,8 +14,12 @@ var item = null
 signal selected_upgrade(upgrade)
 
 func _ready():
-	# Connect the 'pressed' signal to a local function
-	$".".pressed.connect(_on_my_button_pressed)
+	if item == null:
+		item = "food"
+	Name.text = UpgradeDb.UPGRADES[item]["displayname"]
+	Description.text = UpgradeDb.UPGRADES[item]["details"]
+	Level.text = UpgradeDb.UPGRADES[item]["level"]
+	Icon.texture = load(UpgradeDb.UPGRADES[item]["icon"])
 	connect("selected_upgrade", Callable(player, 'upgrade_character'))
 
 func _on_my_button_pressed():

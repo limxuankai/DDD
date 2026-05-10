@@ -16,6 +16,9 @@ var collected_experience = 0
 @onready var upgrade_options = get_node("%Upgrade_Options")
 @onready var itemoptions = preload("res://upgrade.tscn") 
 @onready var UpgradeDb = preload("res://Assets/Utility/upgradeoptionsdb.gd")
+@onready var collectedWeapons = get_node("%CollectedWeapons")
+@onready var collectedUpgrades = get_node("%CollectedUpgrades")
+@onready var itemContainer = $%Upgrade_Options
 
 var bullet = load("res://bullet.tscn")
 var bullet_speed = 800
@@ -23,6 +26,7 @@ var bullet_damage = 1
 
 var upgrade_panel = load("res://upgrade.tscn")
 var collected_upgrades = []
+var upgrade_choices = []
 var shot_cooldown = 0.5
 var time_since_last_shot = 0.0
 var last_time = 0.0
@@ -151,7 +155,7 @@ func get_random_item():
 	for i in UpgradeDb.UPGRADES:
 		if i in collected_upgrades: #Find already collected upgrades
 			pass
-		elif i in upgrade_options: #If the upgrade is already an option
+		elif i in upgrade_choices: #If the upgrade is already an option
 			pass
 		elif UpgradeDb.UPGRADES[i]["type"] == "item": #Don't pick food
 			pass
@@ -166,7 +170,23 @@ func get_random_item():
 			dblist.append(i)
 	if dblist.size() > 0:
 		var randomitem = dblist.pick_random()
-		upgrade_options.append(randomitem)
+		upgrade_choices.append(randomitem)
 		return randomitem
 	else:
 		return null
+		
+func adjust_gui_collection(upgrade):
+	var get_upgraded_displayname = UpgradeDb.UPGRADES[upgrade]["displayname"]
+	var get_type = UpgradeDb.UPGRADES[upgrade]["type"]
+	if get_type != "item":
+		var get_collected_displaynames = []
+		for i in collected_upgrades:
+			get_collected_displaynames.append(UpgradeDb.UPGRADES[i]["displayname"])
+		if not get_upgraded_displayname in get_collected_displaynames:
+			var new_item = itemContainer.instantiate()
+			new_item.upgrade = upgrade
+			match get_type:
+				"weapon":
+					collectedWeapons.add_child(new_item)
+				"upgrade":
+					collectedUpgrades.add_child(new_item)

@@ -14,14 +14,25 @@ var item = null
 signal selected_upgrade(upgrade)
 
 func _ready():
+	connect("selected_upgrade", Callable(player, 'upgrade_character'))
 	if item == null:
 		item = "food"
 	Name.text = UpgradeDb.UPGRADES[item]["displayname"]
 	Description.text = UpgradeDb.UPGRADES[item]["details"]
 	Level.text = UpgradeDb.UPGRADES[item]["level"]
 	Icon.texture = load(UpgradeDb.UPGRADES[item]["icon"])
-	connect("selected_upgrade", Callable(player, 'upgrade_character'))
 
 func _on_my_button_pressed():
 	emit_signal("selected_upgrade",item)
 	print("Clicked")
+
+func _input(event):
+	if event.is_action("click"):
+		if mouse_over:
+			emit_signal("selected_upgrade",item)
+
+func _on_mouse_entered():
+	mouse_over = true
+
+func _on_mouse_exited():
+	mouse_over = false

@@ -16,8 +16,8 @@ var collected_experience = 0
 @onready var upgrade_options = get_node("%Upgrade_Options")
 @onready var itemoptions = preload("res://upgrade.tscn") 
 @onready var UpgradeDb = preload("res://Assets/Utility/upgradeoptionsdb.gd")
-@onready var collectedWeapons = get_node("%CollectedWeapons")
-@onready var collectedUpgrades = get_node("%CollectedUpgrades")
+@onready var collectedWeapons = %CollectedWeapons
+@onready var collectedUpgrades = %CollectedUpgrades
 @onready var itemContainer = $%Upgrade_Options
 
 var bullet = load("res://bullet.tscn")
@@ -134,20 +134,19 @@ func levelup():
 	
 func upgrade_character(upgrade):
 	match upgrade:
-		"armor1","armor2","armor3","armor4":
-			ARMOUR += 1
-		"speed1","speed2","speed3","speed4":
-			SPEED += 20.0
-		"food":
-			hp += 20
+		"Bullet Speed":
+			bullet_speed = bullet_speed * 2 
+		"Bullet Projectile":
+			bullet = bullet * 2
+		"Attack Speed":
+			shot_cooldown = shot_cooldown / 2
+	adjust_gui_collection(upgrade)
 	var option_children = upgrade_options.get_children()
 	for i in option_children:
 		i.queue_free()
 	collected_upgrades.append(upgrade)
 	levelup_screen.visible = false
 	levelup_screen.position = Vector2(800,50)
-	SPEED = SPEED * experience_level
-	bullet_speed = bullet_speed * experience_level
 	get_tree().paused = false
 
 func get_random_item():

@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://d2irqec8th7c6"]
+
+[ext_resource type="Script" uid="uid://c3u5w6wyg2bnt" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://bwduurd186uep" path="res://Assets/Player/char1.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://dp64y25pdnxmo" path="res://Assets/Weapon/pistol.png" id="3_hqtel"]
+[ext_resource type="PackedScene" uid="uid://ciob4plo40dkc" path="res://hurtbox.tscn" id="3_i3pqv"]
+[ext_resource type="AudioStream" uid="uid://nrdbp2baidbi" path="res://Assets/Music/bgm.mp3" id="5_sweqy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sweqy"]
+radius = 62.000244
+height = 559.99976
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cxr5p"]
+radius = 39.9
+height = 313.86
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3pqv"]
+bg_color = Color(0.64266455, 0.1471225, 0.12586632, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqtel"]
+bg_color = Color(0.25848994, 0.55185014, 0.2349875, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
+radius = 175.07141
+
+[node name="Player" type="CharacterBody2D" unique_id=231674940]
+position = Vector2(4.7683716e-07, -1.9999924)
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_onrkg")
+
+[node name="Player" type="Sprite2D" parent="." unique_id=638406858]
+texture_filter = 1
+scale = Vector2(20, 20)
+texture = ExtResource("2_i3pqv")
+
+[node name="Pistol" type="Sprite2D" parent="." unique_id=2089479660]
+texture_filter = 1
+position = Vector2(134.99998, -15.000038)
+scale = Vector2(15, 15)
+texture = ExtResource("3_hqtel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=440906754]
+position = Vector2(6.151199e-05, 9.999998)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_sweqy")
+
+[node name="GunTip" type="Marker2D" parent="." unique_id=255700543]
+position = Vector2(84.99999, -20.000034)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=667891642]
+scale = Vector2(0.9999997, 0.9999997)
+stream = ExtResource("5_sweqy")
+
+[node name="Hurtbox" parent="." unique_id=346783517 instance=ExtResource("3_i3pqv")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1543799547]
+position = Vector2(0, 10)
+shape = SubResource("CapsuleShape2D_cxr5p")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=563603477]
+offset_left = -115.0
+offset_top = -215.00003
+offset_right = 114.99997
+offset_bottom = -190.00003
+theme_override_styles/background = SubResource("StyleBoxFlat_i3pqv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hqtel")
+max_value = 3.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="ExpCollect" type="Area2D" parent="." unique_id=1998608949]
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="ExpRange" type="CollisionShape2D" parent="ExpCollect" unique_id=1867667227]
+position = Vector2(4.999998, 4.9999623)
+shape = SubResource("CircleShape2D_i3pqv")
+
+[node name="ExpBar" type="ProgressBar" parent="." unique_id=78800203]
+anchors_preset = -1
+anchor_left = -9.924001
+anchor_top = -10.120001
+offset_left = -2880.0
+offset_top = -1620.0
+offset_right = 2879.9995
+offset_bottom = -1550.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="." unique_id=1603882306]
+offset_left = -279.99997
+offset_top = -1549.9998
+offset_right = 280.00003
+offset_bottom = -1272.9998
+theme_override_font_sizes/font_size = 100
+text = "LVL
+1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=1400497159]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=233946024]
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1021389358]
+scale = Vector2(0.9999998, 0.9999998)
+
+[node name="Level_Up" type="Panel" parent="." unique_id=287930812]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+offset_left = -1000.0
+offset_top = -1405.0
+offset_right = 1000.0
+offset_bottom = 1595.0
+
+[node name="Label_LVL_Up" type="Label" parent="Level_Up" unique_id=2042333930]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 425.0
+offset_top = 19.999998
+offset_right = 1506.0
+offset_bottom = 373.0
+theme_override_font_sizes/font_size = 128
+text = "LEVEL UP! 
+Click to Upgrade! "
+horizontal_alignment = 1
+
+[node name="Upgrade_Options" type="VBoxContainer" parent="Level_Up" unique_id=354343343]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 89.99999
+offset_top = 624.99994
+offset_right = 1890.0
+offset_bottom = 1125.0
+
+[node name="CollectedWeapons" type="ItemList" parent="." unique_id=147842515]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CollecteUpgrades" type="ItemList" parent="." unique_id=399030258]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="area_entered" from="ExpCollect" to="." method="_on_exp_collect_area_entered"]

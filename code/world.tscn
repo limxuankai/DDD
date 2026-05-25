@@ -1,24 +1,88 @@
-[gd_scene format=3 uid="uid://pp75gpkxo7td"]
+[gd_scene load_steps=6 format=3 uid="uid://pp75gpkxo7td"]
 
 [ext_resource type="PackedScene" uid="uid://cilfxsbhloxl6" path="res://spawner.tscn" id="1_aqk2v"]
 [ext_resource type="Texture2D" uid="uid://dock2fljunxct" path="res://Assets/Background/bg2.png" id="2_pkg7o"]
-[ext_resource type="PackedScene" uid="uid://d2irqec8th7c6" path="res://player.tscn" id="3_036b0"]
+[ext_resource type="PackedScene" uid="uid://cjrc433t6pwo0" path="res://Player.tscn" id="3_036b0"]
 
-[node name="world" type="Node2D" unique_id=79422030]
+[sub_resource type="Environment" id="Environment_tlwt5"]
+background_mode = 3
+glow_enabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=604597688]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlwt5"]
+size = Vector2(1720, 1241)
+
+[node name="world" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(243, 69)
+position = Vector2(27, -70)
 scale = Vector2(16, 16)
 texture = ExtResource("2_pkg7o")
 region_enabled = true
 region_rect = Rect2(0, 0, 10926.586, 7034.8516)
 
-[node name="spawner" parent="." unique_id=180357538 instance=ExtResource("1_aqk2v")]
+[node name="spawner" parent="." instance=ExtResource("1_aqk2v")]
+position = Vector2(-753, -416)
 
-[node name="loot" type="Node2D" parent="." unique_id=514382804 groups=["loot"]]
+[node name="ColorRect" parent="spawner" index="0"]
+visible = false
+offset_left = 116.0
+offset_top = 182.0
+offset_right = 1774.0
+offset_bottom = 1367.0
 
-[node name="Player" parent="." unique_id=1661789285 instance=ExtResource("3_036b0")]
+[node name="loot" type="Node2D" parent="." groups=["loot"]]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=819013355]
+[node name="Player" parent="." instance=ExtResource("3_036b0")]
+position = Vector2(214, 396.00003)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tlwt5")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(-661, 262.71875)
+
+[node name="ColorRect" type="ColorRect" parent="CharacterBody2D"]
+offset_left = -28.0
+offset_top = -530.71875
+offset_right = 10.0
+offset_bottom = 701.28125
+
+[node name="ColorRect2" type="ColorRect" parent="CharacterBody2D"]
+offset_left = 1704.0
+offset_top = -505.71875
+offset_right = 1742.0
+offset_bottom = 726.28125
+
+[node name="ColorRect3" type="ColorRect" parent="CharacterBody2D"]
+offset_left = -10.0
+offset_top = 706.28125
+offset_right = 1710.0
+offset_bottom = 726.28125
+
+[node name="ColorRect4" type="ColorRect" parent="CharacterBody2D"]
+offset_left = 11.0
+offset_top = -527.71875
+offset_right = 1731.0
+offset_bottom = -507.71875
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-856, 88.28125)
+shape = SubResource("RectangleShape2D_tlwt5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(2569, 103.28125)
+shape = SubResource("RectangleShape2D_tlwt5")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(848, 1322.2813)
+shape = SubResource("RectangleShape2D_tlwt5")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(862, -1129.7188)
+shape = SubResource("RectangleShape2D_tlwt5")
+
+[editable path="spawner"]

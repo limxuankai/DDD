@@ -17,7 +17,7 @@ var collected_experience = 0
 @onready var itemoptions = preload("res://upgrade.tscn") 
 @onready var UpgradeDb = preload("res://Assets/Utility/upgradeoptionsdb.gd")
 @onready var collectedWeapons = get_node("%CollectedWeapons")
-@onready var collectedUpgrades = get_node("%CollectedUpgrades")
+#@onready var collectedUpgrades = get_node("%CollectedUpgrades")
 @onready var itemContainer = $%Upgrade_Options
 
 var bullet = load("res://bullet.tscn")
@@ -27,7 +27,7 @@ var bullet_damage = 1
 var upgrade_panel = load("res://upgrade.tscn")
 var collected_upgrades = []
 var upgrade_choices = []
-var shot_cooldown = 0.5
+var shot_cooldown = 0.10
 var time_since_last_shot = 0.0
 var last_time = 0.0
 
@@ -59,7 +59,7 @@ func _process(delta):
 	if (time < last_time):
 		time_since_last_shot = 0
 	
-	print(time_since_last_shot , time)
+	#print(time_since_last_shot , time)
 	
 	if time >= time_since_last_shot:
 		shoot()
@@ -97,6 +97,8 @@ func movement():
 	elif x_mov > 0:
 		sprite.flip_h = false
 		sprite2.flip_h = false
+		sprite2.position = Vector2(135, -15)
+		gun_tip.position = Vector2(85, -20)
 func _on_hit(damage):
 	hp -= damage
 	if hp < 1:
@@ -125,6 +127,7 @@ func levelup():
 	levelup_screen.visible = true
 	var options = 0
 	var optionsmax = 3
+
 	while options < optionsmax:
 		var option_choice = itemoptions.instantiate()
 		option_choice.item = get_random_item()
@@ -134,20 +137,24 @@ func levelup():
 	
 func upgrade_character(upgrade):
 	match upgrade:
-		"armor1","armor2","armor3","armor4":
-			ARMOUR += 1
-		"speed1","speed2","speed3","speed4":
+		"Bullets Speed","Bullets Speed 2","Bullets Speed 3":
+			bullet_speed += 400
+		"speed1","speed2","speed3":
 			SPEED += 20.0
+		"reload1","reload2","reload3":
+			shot_cooldown -= 0.05
 		"food":
-			hp += 20
+			hp += 1
+			print(hp)
 	var option_children = upgrade_options.get_children()
 	for i in option_children:
 		i.queue_free()
 	collected_upgrades.append(upgrade)
+	upgrade_choices.clear()
+	print(collected_upgrades)
+	print(upgrade_choices)
 	levelup_screen.visible = false
-	levelup_screen.position = Vector2(800,50)
-	SPEED = SPEED * experience_level
-	bullet_speed = bullet_speed * experience_level
+	#levelup_screen.position = Vector2(800,50)
 	get_tree().paused = false
 
 func get_random_item():
@@ -174,19 +181,19 @@ func get_random_item():
 		return randomitem
 	else:
 		return null
-		
-func adjust_gui_collection(upgrade):
-	var get_upgraded_displayname = UpgradeDb.UPGRADES[upgrade]["displayname"]
-	var get_type = UpgradeDb.UPGRADES[upgrade]["type"]
-	if get_type != "item":
-		var get_collected_displaynames = []
-		for i in collected_upgrades:
-			get_collected_displaynames.append(UpgradeDb.UPGRADES[i]["displayname"])
-		if not get_upgraded_displayname in get_collected_displaynames:
-			var new_item = itemContainer.instantiate()
-			new_item.upgrade = upgrade
-			match get_type:
-				"weapon":
-					collectedWeapons.add_child(new_item)
-				"upgrade":
-					collectedUpgrades.add_child(new_item)
+
+#func adjust_gui_collection(upgrade):
+	#var get_upgraded_displayname = UpgradeDb.UPGRADES[upgrade]["displayname"]
+	#var get_type = UpgradeDb.UPGRADES[upgrade]["type"]
+	#if get_type != "item":
+		#var get_collected_displaynames = []
+		#for i in collected_upgrades:
+			#get_collected_displaynames.append(UpgradeDb.UPGRADES[i]["displayname"])
+		#if not get_upgraded_displayname in get_collected_displaynames:
+			#var new_item = itemContainer.instantiate()
+			#new_item.upgrade = upgrade
+			#match get_type:
+				#"weapon":
+					#collectedWeapons.add_child(new_item)
+				#"upgrade":
+					#collectedUpgrades.add_child(new_item)

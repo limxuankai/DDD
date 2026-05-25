@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://hvn2x8sto6ix"]
+[gd_scene load_steps=2 format=3 uid="uid://hvn2x8sto6ix"]
 
 [ext_resource type="Script" uid="uid://cs2fbychpsav0" path="res://uprage.gd" id="1_w52ek"]
 
-[node name="Upgrade Option" type="Button" unique_id=1881040579]
+[node name="Upgrade Option" type="Button"]
 process_mode = 3
 z_index = 1
 custom_minimum_size = Vector2(1800, 500)
@@ -12,19 +12,19 @@ offset_right = 1777.0
 offset_bottom = 495.0
 script = ExtResource("1_w52ek")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1752346881]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 55.0
 offset_top = 76.0
 offset_right = 357.0
 offset_bottom = 378.0
 
-[node name="Icon" type="TextureRect" parent="ColorRect" unique_id=594975935]
+[node name="Icon" type="TextureRect" parent="ColorRect"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label_Name" type="Label" parent="." unique_id=1865647291]
+[node name="Label_Name" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.37600002
@@ -38,7 +38,7 @@ offset_bottom = 11.5
 theme_override_font_sizes/font_size = 96
 text = "NAME NAME"
 
-[node name="Label_Description" type="Label" parent="." unique_id=452641429]
+[node name="Label_Description" type="Label" parent="."]
 layout_mode = 0
 offset_left = 417.0
 offset_top = 216.0
@@ -47,7 +47,7 @@ offset_bottom = 440.0
 theme_override_font_sizes/font_size = 96
 text = "i am cringe"
 
-[node name="Label_Level" type="Label" parent="." unique_id=718699349]
+[node name="Label_Level" type="Label" parent="."]
 layout_mode = 0
 offset_left = 1188.0
 offset_top = 55.0
@@ -55,3 +55,5 @@ offset_right = 1782.0
 offset_bottom = 187.0
 theme_override_font_sizes/font_size = 96
 text = "123333	"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

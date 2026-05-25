@@ -3,148 +3,76 @@ extends Node
 const ICON_PATH = "res://Assets/Utility/Icons/Upgrades/"
 const WEAPON_PATH = "res://Assets/Weapon/"
 const UPGRADES = {
-	"armor1": {
-		"icon": ICON_PATH + "helmet_1.png",
-		"displayname": "Armor",
-		"details": "Reduces Damage By 1 point",
+	"Bullets Speed": {
+		"icon": "res://Assets/Enemy/mob1.png",
+		"displayname": "Faster Bullets",
+		"details": "Increase Bullet Speed by 100%",
 		"level": "Level: 1",
 		"prerequisite": [],
 		"type": "upgrade"
 	},
-	"armor2": {
-		"icon": ICON_PATH + "helmet_1.png",
-		"displayname": "Armor",
-		"details": "Reduces Damage By an additional 1 point",
+	"Bullets Speed 2": {
+		"icon": "res://Assets/Enemy/mob1.png",
+		"displayname": "Faster Bullets",
+		"details": "Increase Bullet Speed by 100%",
 		"level": "Level: 2",
-		"prerequisite": ["armor1"],
+		"prerequisite": ["Bullets Speed"],
 		"type": "upgrade"
 	},
-	"armor3": {
-		"icon": ICON_PATH + "helmet_1.png",
-		"displayname": "Armor",
-		"details": "Reduces Damage By an additional 1 point",
+	"Bullets Speed 3": {
+		"icon": "res://Assets/Enemy/mob1.png",
+		"displayname": "Faster Bullets",
+		"details": "Increase Bullet Speed by 100%",
 		"level": "Level: 3",
-		"prerequisite": ["armor2"],
-		"type": "upgrade"
-	},
-	"armor4": {
-		"icon": ICON_PATH + "helmet_1.png",
-		"displayname": "Armor",
-		"details": "Reduces Damage By an additional 1 point",
-		"level": "Level: 4",
-		"prerequisite": ["armor3"],
+		"prerequisite": ["Bullets Speed 2"],
 		"type": "upgrade"
 	},
 	"speed1": {
-		"icon": ICON_PATH + "boots_4_green.png",
-		"displayname": "Speed",
-		"details": "Movement Speed Increased by 50% of base speed",
+		"icon": "res://Assets/Enemy/mob1.png",
+		"displayname": "More Movement Speed",
+		"details": "Faster movement",
 		"level": "Level: 1",
 		"prerequisite": [],
 		"type": "upgrade"
 	},
 	"speed2": {
-		"icon": ICON_PATH + "boots_4_green.png",
-		"displayname": "Speed",
-		"details": "Movement Speed Increased by an additional 50% of base speed",
+		"icon": "res://Assets/Enemy/mob1.png",
+		"displayname": "More Movement Speed",
+		"details": "Faster movement",
 		"level": "Level: 2",
 		"prerequisite": ["speed1"],
 		"type": "upgrade"
 	},
 	"speed3": {
-		"icon": ICON_PATH + "boots_4_green.png",
-		"displayname": "Speed",
-		"details": "Movement Speed Increased by an additional 50% of base speed",
+		"icon": "res://Assets/Enemy/mob1.png",
+		"displayname": "More Movement Speed",
+		"details": "Faster movement",
 		"level": "Level: 3",
 		"prerequisite": ["speed2"],
 		"type": "upgrade"
 	},
-	"speed4": {
-		"icon": ICON_PATH + "boots_4_green.png",
-		"displayname": "Speed",
-		"details": "Movement Speed Increased an additional 50% of base speed",
-		"level": "Level: 4",
-		"prerequisite": ["speed3"],
-		"type": "upgrade"
-	},
-	"tome1": {
-		"icon": ICON_PATH + "thick_new.png",
-		"displayname": "Tome",
-		"details": "Increases the size of spells an additional 10% of their base size",
+	"reload1": {
+		"icon": "res://Assets/Enemy/mob1.png",
+		"displayname": "More Attacks",
+		"details": "Increase attack speed",
 		"level": "Level: 1",
 		"prerequisite": [],
 		"type": "upgrade"
 	},
-	"tome2": {
-		"icon": ICON_PATH + "thick_new.png",
-		"displayname": "Tome",
-		"details": "Increases the size of spells an additional 10% of their base size",
+	"reload2": {
+		"icon": "res://Assets/Enemy/mob1.png",
+		"displayname": "More Attacks",
+		"details": "Increase attack speed",
 		"level": "Level: 2",
-		"prerequisite": ["tome1"],
+		"prerequisite": ["reload1"],
 		"type": "upgrade"
 	},
-	"tome3": {
-		"icon": ICON_PATH + "thick_new.png",
-		"displayname": "Tome",
-		"details": "Increases the size of spells an additional 10% of their base size",
+	"reload3": {
+		"icon": "res://Assets/Enemy/mob1.png",
+		"displayname": "More Attacks",
+		"details": "Increase attack speed",
 		"level": "Level: 3",
-		"prerequisite": ["tome2"],
-		"type": "upgrade"
-	},
-	"tome4": {
-		"icon": ICON_PATH + "thick_new.png",
-		"displayname": "Tome",
-		"details": "Increases the size of spells an additional 10% of their base size",
-		"level": "Level: 4",
-		"prerequisite": ["tome3"],
-		"type": "upgrade"
-	},
-	"scroll1": {
-		"icon": ICON_PATH + "scroll_old.png",
-		"displayname": "Scroll",
-		"details": "Decreases of the cooldown of spells by an additional 5% of their base time",
-		"level": "Level: 1",
-		"prerequisite": [],
-		"type": "upgrade"
-	},
-	"scroll2": {
-		"icon": ICON_PATH + "scroll_old.png",
-		"displayname": "Scroll",
-		"details": "Decreases of the cooldown of spells by an additional 5% of their base time",
-		"level": "Level: 2",
-		"prerequisite": ["scroll1"],
-		"type": "upgrade"
-	},
-	"scroll3": {
-		"icon": ICON_PATH + "scroll_old.png",
-		"displayname": "Scroll",
-		"details": "Decreases of the cooldown of spells by an additional 5% of their base time",
-		"level": "Level: 3",
-		"prerequisite": ["scroll2"],
-		"type": "upgrade"
-	},
-	"scroll4": {
-		"icon": ICON_PATH + "scroll_old.png",
-		"displayname": "Scroll",
-		"details": "Decreases of the cooldown of spells by an additional 5% of their base time",
-		"level": "Level: 4",
-		"prerequisite": ["scroll3"],
-		"type": "upgrade"
-	},
-	"ring1": {
-		"icon": ICON_PATH + "urand_mage.png",
-		"displayname": "Ring",
-		"details": "Your spells now spawn 1 more additional attack",
-		"level": "Level: 1",
-		"prerequisite": [],
-		"type": "upgrade"
-	},
-	"ring2": {
-		"icon": ICON_PATH + "urand_mage.png",
-		"displayname": "Ring",
-		"details": "Your spells now spawn an additional attack",
-		"level": "Level: 2",
-		"prerequisite": ["ring1"],
+		"prerequisite": ["reload2"],
 		"type": "upgrade"
 	},
 	"food": {
@@ -155,4 +83,5 @@ const UPGRADES = {
 		"prerequisite": [],
 		"type": "item"
 	}
+	
 }

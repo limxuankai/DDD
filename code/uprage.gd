@@ -6,7 +6,6 @@ extends Button
 @onready var Icon = $ColorRect/Icon
 @onready var UpgradeDb = preload("res://Assets/Utility/upgradeoptionsdb.gd")
 
-
 var mouse_over = false
 var item = null
 @onready var player = get_tree().get_first_node_in_group("player")
@@ -22,6 +21,6 @@ func _ready():
 	Icon.texture = load(UpgradeDb.UPGRADES[item]["icon"])
 	connect("selected_upgrade", Callable(player, 'upgrade_character'))
 
-func _on_my_button_pressed():
+func _on_pressed() -> void:
 	emit_signal("selected_upgrade",item)
 	print("Clicked")

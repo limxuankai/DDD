@@ -1,0 +1,12 @@
+# DDD 
+
+## Storyline 
+
+In far future, robot dystopia. Cyber punk age, robot people have an event called Disco Dance destruction. Instead of the normal club dance music entertainment, it has morphed into a violent massacre of colors, dance and music. Sourcing from humans fascination with violence (moshing) and the strong need for expression, it transformed into DDD.
+
+## Progress 
+
+First Prototype 
+- Game Mechanics inspired from Vampire Survivors
+- Game Assets still not finalised
+- Game Sounds will be implimented soon.
